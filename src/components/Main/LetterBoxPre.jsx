@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 function LetterBoxPre({ selectedMemberId, memberArr }) {
   const letters = useSelector((store) => store.letterReducer.letters);
+  const loginNickname = useSelector((store) => store.authSlice.nickname);
 
   const navigate = useNavigate();
   const goToHandler = (letter) => {

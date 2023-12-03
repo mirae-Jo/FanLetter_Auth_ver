@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LetterInputBox from "./LetterInputBox";
 import MemberBtn from "./MemberBtn";
 import LetterBoxPre from "./LetterBoxPre";
-import { MainContext } from "../../context/MainContext";
 
 // 배열
 

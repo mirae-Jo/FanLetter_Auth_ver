@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ProfileImage from "../assets/baseline_account_circle_black_48dp.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteLetter, updateLetter } from "../redux/modules/letterReducer";
+import { deleteLetter, updateLetter } from "../redux/modules/letterSlice";
 
 function Detail() {
   const navigate = useNavigate();
@@ -43,63 +43,54 @@ function Detail() {
   };
 
   return (
-    <div>
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Home으로 이동
-      </button>
-      <StLetterBox>
-        <StLetterWrap>
-          <StProfileWrap>
-            <StProfile src={ProfileImage} />
-          </StProfileWrap>
-          {isLetterUpdate === true ? (
-            <>
-              <StLetterDiv>
-                <input
-                  value={nickname}
-                  onChange={(e) => {
-                    setNickname(e.target.value);
-                  }}
-                  maxLength={14}
-                />
-                <textarea
-                  value={content}
-                  onChange={(e) => {
-                    setContent(e.target.value);
-                  }}
-                  maxLength={100}
-                  rows={4}
-                ></textarea>
-              </StLetterDiv>
-              <StBtn>
-                <button onClick={completeBtn}>완료</button>
-              </StBtn>
-            </>
-          ) : (
-            <>
-              <StLetterDiv>
-                <StH3>{foundData.nickname}</StH3>
-                <StP>{foundData.content}</StP>
-              </StLetterDiv>
-              <StBtn>
-                <button onClick={updateBtn}>수정</button>
-                <button onClick={delBtn}>삭제</button>
-              </StBtn>
-            </>
-          )}
-        </StLetterWrap>
-      </StLetterBox>
-    </div>
+    <StLetterBox>
+      <StLetterWrap>
+        <StProfileWrap>
+          <StProfile src={ProfileImage} />
+        </StProfileWrap>
+        {isLetterUpdate === true ? (
+          <>
+            <StLetterDiv>
+              <input
+                value={nickname}
+                onChange={(e) => {
+                  setNickname(e.target.value);
+                }}
+                maxLength={14}
+              />
+              <textarea
+                value={content}
+                onChange={(e) => {
+                  setContent(e.target.value);
+                }}
+                maxLength={100}
+                rows={4}
+              ></textarea>
+            </StLetterDiv>
+            <StBtn>
+              <button onClick={completeBtn}>완료</button>
+            </StBtn>
+          </>
+        ) : (
+          <>
+            <StLetterDiv>
+              <StH3>{foundData.nickname}</StH3>
+              <StP>{foundData.content}</StP>
+            </StLetterDiv>
+            <StBtn>
+              <button onClick={updateBtn}>수정</button>
+              <button onClick={delBtn}>삭제</button>
+            </StBtn>
+          </>
+        )}
+      </StLetterWrap>
+    </StLetterBox>
   );
 }
 const StLetterBox = styled.div`
   width: 580px;
   height: auto;
-  margin: 40px auto;
+  margin: 10px auto;
   border: 2px solid #fff;
   color: #fff;
   background-color: #333;

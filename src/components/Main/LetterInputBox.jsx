@@ -3,16 +3,18 @@ import ProfileImage from "../../assets/baseline_account_circle_black_48dp.png";
 import uuid from "react-uuid";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { addLetter } from "../../redux/modules/letterReducer";
+import { addLetter } from "../../redux/modules/letterSlice";
 
 function LetterInputBox({ memberArr }) {
-  const letters = useSelector((store) => store.letterReducer.letters);
   const dispatch = useDispatch();
-  const [nickname, setNickname] = useState("");
+  // const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
   const [selected, setSelected] = useState(memberArr[0].name);
   const [profile] = useState(ProfileImage);
 
+  const loginNickname = useSelector((store) => {
+    return store.authSlice.nickname;
+  });
   const handleSelect = (e) => {
     setSelected(e.target.value);
   };
@@ -23,12 +25,12 @@ function LetterInputBox({ memberArr }) {
       avatar: profile,
       id: uuid(),
       writedTo: selected,
-      nickname: nickname,
+      nickname: loginNickname,
       content: content,
     };
     dispatch(addLetter(newLetter));
 
-    setNickname("");
+    // setNickname("");
     setContent("");
   };
 
@@ -51,13 +53,14 @@ function LetterInputBox({ memberArr }) {
           </StOptionWrap>
           <StInputWrap>
             <StSpan>닉네임 : </StSpan>
-            <StInput
+            <p>{loginNickname}</p>
+            {/* <StInput
               value={nickname}
               onChange={(e) => {
                 setNickname(e.target.value);
               }}
               required
-            ></StInput>
+            ></StInput> */}
           </StInputWrap>
           <StInputWrap>
             <StSpan>내용 : </StSpan>
