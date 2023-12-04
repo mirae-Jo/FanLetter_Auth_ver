@@ -21,7 +21,7 @@ export const loginThunk = createAsyncThunk(
     const { userId, password } = payload;
     try {
       const response = await axios.post(
-        "https://moneyfulpublicpolicy.co.kr/login",
+        `${process.env.REACT_APP_AUTH_API_URL}/login`,
         { id: userId, password }
       );
 
@@ -32,11 +32,11 @@ export const loginThunk = createAsyncThunk(
         return response.data;
       }
       // 정상적으로 로그인이 안됐다면 reject 시켜버린다.
-      return thunkAPI.rejectedWithValue(response.data); // 주황색
+      return thunkAPI.rejectWithValue(response.data); // 주황색
     } catch (err) {
       // 빨간색
       alert(err.response.data.message);
-      return thunkAPI.rejectedWithValue(err);
+      return thunkAPI.rejectWithValue(err);
     }
   }
 );
@@ -46,7 +46,6 @@ export const checkLoginStatus = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const accessToken = localStorage.getItem("accessToken") || "";
-      console.log("accessToken은 이란다", accessToken);
 
       authInstance.defaults.headers.common[
         "Authorization"
@@ -54,7 +53,6 @@ export const checkLoginStatus = createAsyncThunk(
 
       // 유저 정보를 검증을 맡기긴다.
       const response = await authInstance.get("/user");
-      console.log(response.data);
 
       // 성공을 하면 ↓ 이게 실행이 될꺼고 실패를 하면 catch로 간다.
       return thunkAPI.fulfillWithValue(response.data);

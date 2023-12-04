@@ -1,11 +1,15 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { getLetter } from "../../redux/modules/letterSlice";
 
 function LetterBoxPre({ selectedMemberId, memberArr }) {
   const letters = useSelector((store) => store.letterReducer.letters);
-  const loginNickname = useSelector((store) => store.authSlice.nickname);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getLetter());
+  }, []);
 
   const navigate = useNavigate();
   const goToHandler = (letter) => {

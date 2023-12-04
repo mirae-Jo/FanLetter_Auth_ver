@@ -3,7 +3,7 @@ import ProfileImage from "../../assets/baseline_account_circle_black_48dp.png";
 import uuid from "react-uuid";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { addLetter } from "../../redux/modules/letterSlice";
+import { postLetter } from "../../redux/modules/letterSlice";
 
 function LetterInputBox({ memberArr }) {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ function LetterInputBox({ memberArr }) {
       nickname: loginNickname,
       content: content,
     };
-    dispatch(addLetter(newLetter));
+    dispatch(postLetter(newLetter));
 
     // setNickname("");
     setContent("");

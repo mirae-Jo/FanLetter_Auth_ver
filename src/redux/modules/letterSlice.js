@@ -1,11 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { data } from "../../shared/data";
+import axios from "axios";
 
 // 초기값 설정
 
 const initialState = {
   letters: data,
 };
+
+const jsonServer = axios.create({
+  baseURL: process.env.REACT_APP_LETTER_API_URL,
+});
+
+export const getLetter = createAsyncThunk("letter/getLetter", async () => {
+  try {
+    const response = await jsonServer.get(`/letters`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+export const postLetter = createAsyncThunk("letter/postLetter", async () => {
+  const response = await jsonServer.post("/letters");
+  return response.data;
+});
 
 const letterSlice = createSlice({
   name: "handleLetter",
@@ -23,6 +42,14 @@ const letterSlice = createSlice({
       state.letters = state.letters.filter((item) => {
         return item.id !== action.payload;
       });
+    },
+  },
+  extraReducers: {
+    [getLetter.fulfilled]: (state, action) => {
+      state.letters = action.payload;
+    },
+    [postLetter]: (state, action) => {
+      state.letters = [...state.letters, action.payload];
     },
   },
 });

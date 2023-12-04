@@ -10,7 +10,7 @@ function Detail() {
   const params = useParams();
 
   const letters = useSelector((store) => store.letterReducer.letters);
-  const foundData = letters.find((letter) => letter.id === params.id);
+  const foundData = letters.find((letter) => letter.id == params.id);
 
   const dispatch = useDispatch();
 

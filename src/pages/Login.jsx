@@ -43,7 +43,7 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://moneyfulpublicpolicy.co.kr/register",
+        `${process.env.REACT_APP_AUTH_API_URL}/register`,
         {
           id: signupId.userId,
           password: signupPw.password,
