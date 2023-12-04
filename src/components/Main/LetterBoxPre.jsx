@@ -23,7 +23,6 @@ function LetterBoxPre({ selectedMemberId, memberArr }) {
       }).name
     );
   });
-  console.log(filtered.length);
   return (
     <div>
       <StLetterBox>

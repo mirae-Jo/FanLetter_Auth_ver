@@ -14,17 +14,24 @@ const jsonServer = axios.create({
 
 export const getLetter = createAsyncThunk("letter/getLetter", async () => {
   try {
-    const response = await jsonServer.get(`/letters`);
+    const response = await jsonServer.get("/letters");
     return response.data;
   } catch (err) {
     console.log(err);
   }
 });
 
-export const postLetter = createAsyncThunk("letter/postLetter", async () => {
-  const response = await jsonServer.post("/letters");
-  return response.data;
-});
+export const postLetter = createAsyncThunk(
+  "letter/postLetter",
+  async (payload, thunkAPI) => {
+    try {
+      const response = await jsonServer.post("/letters", payload);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 const letterSlice = createSlice({
   name: "handleLetter",

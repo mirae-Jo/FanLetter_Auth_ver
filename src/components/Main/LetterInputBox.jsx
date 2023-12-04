@@ -22,11 +22,12 @@ function LetterInputBox({ memberArr }) {
   const Formprops = (e) => {
     e.preventDefault();
     const newLetter = {
-      avatar: profile,
-      id: uuid(),
-      writedTo: selected,
+      createdAt: new Date(),
       nickname: loginNickname,
+      avatar: profile,
       content: content,
+      writedTo: selected,
+      id: uuid(),
     };
     dispatch(postLetter(newLetter));
 

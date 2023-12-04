@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ProfileImage from "../assets/baseline_account_circle_black_48dp.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteLetter, updateLetter } from "../redux/modules/letterSlice";
+import {
+  deleteLetter,
+  getLetter,
+  updateLetter,
+} from "../redux/modules/letterSlice";
 
 function Detail() {
   const navigate = useNavigate();
