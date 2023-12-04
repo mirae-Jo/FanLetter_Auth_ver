@@ -1,4 +1,4 @@
-# Fan Letter
+# Fan Letter Authentication
 
 ### 홈페이지 입장시 로그인 페이지로 이동
 #### 로그인 페이지에서 회원가입 가능
