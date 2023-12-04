@@ -12,5 +12,5 @@
 
 
 ### 댓글 추가 가능
-#### json-server에 댓글 등록
-![image](https://github.com/mirae-Jo/FanLetter_Auth_ver/assets/144882755/273a4a84-396d-4428-998a-92c8b080681f)
+#### json-server에 댓글 등록(새로고침 해야 댓글 달림)
+![image](https://github.com/mirae-Jo/FanLetter_Auth_ver/assets/144882755/2b14b23d-0e9c-4cd3-ab8b-725be82aae27)
